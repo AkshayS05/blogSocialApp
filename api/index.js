@@ -10,15 +10,14 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
-dotenv.config();
-
 app.use(
   cors({
-    origin: ["https://blog-social-app-jzr5.vercel.app"],
+    origin: "*",
     methods: ["POST", "GET"],
     credentials: true,
   })
 );
+dotenv.config();
 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
