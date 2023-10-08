@@ -14,7 +14,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: ["https://blog-social-app-jzr5.vercel.app/"],
+    origin: ["https://blog-social-app-jzr5.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
