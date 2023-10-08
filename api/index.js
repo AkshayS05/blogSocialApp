@@ -10,13 +10,7 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
-app.use(
-  cors({
-    origin: "*",
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
+app.use(cors());
 dotenv.config();
 
 app.use(express.json());
