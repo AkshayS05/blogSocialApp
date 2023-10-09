@@ -12,10 +12,13 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 app.use(cors());
 dotenv.config();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+const corsOrigin = {
+  origin: "https://blog-social-app-jzr5.vercel.app",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOrigin));
+
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
