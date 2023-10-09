@@ -12,12 +12,14 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 app.use(cors());
 dotenv.config();
-const corsOrigin = {
-  origin: "https://blog-social-app-jzr5.vercel.app",
+
+// Allow requests from any origin
+const corsOptions = {
+  origin: "*",
   credentials: true,
   optionSuccessStatus: 200,
 };
-app.use(cors(corsOrigin));
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
@@ -29,8 +31,8 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: true,
   })
-  .then(console.log("Connected to MongoDB"))
-  .catch((err) => console.log(err));
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -51,6 +53,6 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
 
-app.listen("5000", () => {
-  console.log("Backend is running.");
+app.listen(PORT, () => {
+  console.log(`Backend is running on port ${PORT}.`);
 });
